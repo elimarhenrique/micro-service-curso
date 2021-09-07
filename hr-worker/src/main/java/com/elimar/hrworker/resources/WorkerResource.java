@@ -34,6 +34,16 @@ public class WorkerResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Worker> findById(@PathVariable Long id) {
+		
+		/*
+		 * Teste com timeout de 3 segundos
+		 * para validar o timeout padrão do hystrix de 1 segundo
+		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		*/
 		logger.info("Port = "+ env.getProperty("local.server.port"));
 		
 		Worker worker = repository.findById(id).get();
